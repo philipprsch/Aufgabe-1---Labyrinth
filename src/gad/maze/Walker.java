@@ -18,7 +18,6 @@ public class Walker {
 	}
 	private void walkForward() throws Exception {
 		this.pos = SquareMatrix.addVectors(this.pos, this.orient);
-		System.out.println("New Position: "+this.pos[0]+", "+this.pos[1]);
 		result.addLocation(this.pos[0], this.pos[1]);
 	}
 	private int[] rightVector(){
@@ -57,7 +56,6 @@ public class Walker {
 				return false;
 			}
 		}
-        //return SquareMatrix.compVectors(this.pos, this.end_pos);
     }
 
 	public static void main(String[] args) throws Exception {
