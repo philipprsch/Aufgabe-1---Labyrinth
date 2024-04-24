@@ -1,7 +1,7 @@
 package gad.maze;
 public class Walker {
 	public boolean[][] maze;
-	public boolean[][] maze_visited;
+	//public boolean[][] maze_visited;
 	public double[] pos = {1,0};
 	public double[] orient = {0,1};
 	private SquareMatrix rightRot = new SquareMatrix(new double[][] {{0,1},{-1,0}});
@@ -16,6 +16,7 @@ public class Walker {
 	public boolean walk() {
 		boolean result_ready = false;
 		boolean solvable = false;
+		result.addLocation((int)this.pos[0], (int)this.pos[1]);
 
 		while (!result_ready) {
 			double[] rightVect = this.rightRot.multiplyVector(this.orient);
@@ -23,7 +24,7 @@ public class Walker {
 			System.out.println("{"+this.orient[0]+","+this.orient[1]+"}");
 			if (maze[(int)rightWall[0]][(int)rightWall[1]]) {
 				double[] leftVect = this.leftRot.multiplyVector(this.orient);
-				double[] leftWall = {this.pos[0]+leftVect[0], this.pos[1]+leftVect[1]};
+				//double[] leftWall = {this.pos[0]+leftVect[0], this.pos[1]+leftVect[1]};
 				if (maze[(int)pos[0]+(int)orient[0]][(int)pos[1]+(int)orient[1]]) {
 					this.orient = new double[] {(int)leftVect[0], (int)leftVect[1]};
 				} else {
@@ -37,9 +38,11 @@ public class Walker {
 				result.addLocation((int)this.pos[0], (int)this.pos[1]);
 			}
 			if (this.pos[0] == 1 && this.pos[1] == 0) {
-				solvable = false;
+				System.out.println("NOT Sovlable");
+				//solvable = false;
 				result_ready = true;
-			} else if (this.pos[0] == this.maze[0].length-1 && this.pos[1] == this.maze[1].length-2) {
+			} else if (this.pos[0] == this.maze[0].length-1 && this.pos[1] == this.maze.length-2) {
+				System.out.println("Solvable");
 				solvable = true;
 				result_ready = true;
 			}
@@ -47,7 +50,7 @@ public class Walker {
 		return solvable;
 	}
 	public static void main(String[] args) {
-		boolean[][] maze = Maze.generateStandardMaze(80, 80);
+		boolean[][] maze = Maze.generateStandardMaze(20, 20);
 		StudentResult result = new StudentResult();
 		Walker walker = new Walker(maze, result);
 		System.out.println(walker.walk());
