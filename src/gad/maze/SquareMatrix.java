@@ -21,10 +21,7 @@ public class SquareMatrix {
         }
         return true;
     }
-    public static int[] addVectors(int[] v1, int[] v2) throws Exception {
-        if (v1.length != v2.length) {
-            throw new Exception("Vectors not of same size");
-        }
+    public static int[] addVectors(int[] v1, int[] v2) {
         int[] output = new int[v1.length];
         for (int i = 0; i < v1.length; i++) {
             output[i] = v1[i]+v2[i];

@@ -16,7 +16,7 @@ public class Walker {
 		this.end_pos = new int[] {this.maze.length -1, this.maze[0].length-2};
 		result.addLocation(this.pos[0], this.pos[1]);
 	}
-	private void walkForward() throws Exception {
+	private void walkForward() {
 		this.pos = SquareMatrix.addVectors(this.pos, this.orient);
 		result.addLocation(this.pos[0], this.pos[1]);
 	}
@@ -29,15 +29,15 @@ public class Walker {
 	private void turnLeft() {
 		this.orient = this.leftRot.multiplyVector(this.orient);
 	}
-	private boolean rightWall() throws Exception {
+	private boolean rightWall()  {
 		int[] rightField = SquareMatrix.addVectors(this.pos, this.rightVector());
 		return maze[rightField[0]][ rightField[1]];
 	}
-	private boolean frontWall() throws Exception {
+	private boolean frontWall()  {
 		int[] frontField = SquareMatrix.addVectors(this.pos, this.orient);
 		return maze[frontField[0]][ frontField[1]];
 	}
-	public boolean walk() throws Exception {
+	public boolean walk() {
 		while (true) {
 			if (SquareMatrix.compVectors(this.pos, this.end_pos)) {
 				return true;
@@ -58,7 +58,7 @@ public class Walker {
 		}
     }
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		boolean[][] maze = Maze.generateStandardMaze(10, 10);
 		StudentResult result = new StudentResult();
 		Walker walker = new Walker(maze, result);
