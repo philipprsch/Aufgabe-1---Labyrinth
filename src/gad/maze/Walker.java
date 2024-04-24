@@ -37,7 +37,6 @@ public class Walker {
 		int[] frontField = SquareMatrix.addVectors(this.pos, this.orient);
 		return maze[frontField[0]][ frontField[1]];
 	}
-
 	public boolean walk() throws Exception {
 		while (true) {
 			if (SquareMatrix.compVectors(this.pos, this.end_pos)) {
